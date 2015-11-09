@@ -20,6 +20,8 @@ class Barber < ActiveRecord::Base
 end
 
 class Contact < ActiveRecord::Base
+	validates :email, presence: true
+	validates :message, presence: true
 end
 
 get '/' do
@@ -50,23 +52,20 @@ post '/visit' do
   end
 end
 
-
 get '/contacts' do
+  @ct = Contact.new
   erb :contacts
 end
 
 post '/contacts' do
-  session[:email] = params['email']
-  session[:message] = params['message']
 
-  c = Contact.new
-  c.email = session[:email]
-  c.message = session[:message]
-  c.save
-
-  session[:email] = ''
-  session[:message] = ''  
-  erb 'Дорогой <%=session[:username]%>, вашe сообщение принято. Мы вам ответим в близжайшее время!'
+  @ct = Contact.new params[:contact]
+  if @ct.save
+  	  	erb '<h2>Спасибо, сообщение принято!</h2>'
+  else
+  	@error = @ct.errors.full_messages.first
+  	erb :contacts
+  end
 end
 
 get '/barber/:id' do
