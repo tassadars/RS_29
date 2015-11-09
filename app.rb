@@ -41,9 +41,11 @@ end
 post '/visit' do
 
   c = Client.new params[:client]
-  c.save 
-
-  erb 'Спасибо, заявка принята!'
+  if c.save
+  	erb '<h2>Спасибо, заявка принята!</h2>'
+  else
+  	erb '<h2>Вы не заполнили все поля!!!</h2>'
+  end
 end
 
 
