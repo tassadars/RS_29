@@ -31,11 +31,6 @@ get '/' do
 	erb :index
 end
 
-
-before '/visit' do
-	@barbers = Barber.order "id DESC"
-end
-
 get '/visit' do
   @c = Client.new 
   erb :visit
