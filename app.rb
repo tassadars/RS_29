@@ -64,9 +64,10 @@ post '/contacts' do
   session[:email] = params['email']
   session[:message] = params['message']
 
-  b = Contact.new :email => session[:email],
-  				  :message => session[:message]
-  b.save
+  c = Contact.new
+  c.email = session[:email]
+  c.message = session[:message]
+  c.save
 
   session[:email] = ''
   session[:message] = ''  
