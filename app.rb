@@ -69,3 +69,6 @@ post '/contacts' do
   erb 'Дорогой <%=session[:username]%>, вашe сообщение принято. Мы вам ответим в близжайшее время!'
 end
 
+get '/barber/:id' do
+	erb "This is gonna be barber page, dude."
+end
