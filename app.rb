@@ -44,7 +44,8 @@ post '/visit' do
   if c.save
   	erb '<h2>Спасибо, заявка принята!</h2>'
   else
-  	erb '<h2>Вы не заполнили все поля!!!</h2>'
+  	@error = c.errors.full_messages.first
+  	erb :visit
   end
 end
 
