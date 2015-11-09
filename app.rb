@@ -15,6 +15,7 @@ end
 
 get '/' do
 
-	@barbers = Barber.all
+	#@barbers = Barber.all
+	@barbers = Barber.order "id DESC"
 	erb :index
 end
