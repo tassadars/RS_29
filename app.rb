@@ -34,25 +34,11 @@ get '/visit' do
 end
 
 post '/visit' do
-  session[:username] = params['username']
-  session[:phone] = params['phone']
-  session[:datetime] = params['datetime']
-  session[:barber] = params['barber']
-  session[:color] = params['color']
 
-  b = Client.new :name => session[:username],
-  				 :phone => session[:phone],
-  				 :datestamp => session[:datetime],
-  				 :barber => session[:barber],
-  				 :color => session[:color]
-  b.save
+  c = Client.new params[:client]
+  c.save
 
-  session[:username] = ''
-  session[:phone] = ''
-  session[:datetime] = ''
-  session[:barber] = ''
-  session[:color] = ''
-  erb 'Дорогой <%=session[:username]%>, ваша заявка принята на рассмотрение. Парикмахер <%=session[:barber]%> вам перезвонит!'
+  erb 'Спасибо, заявка принята!'
 end
 
 

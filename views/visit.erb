@@ -6,19 +6,19 @@
 <form action= "/visit" method="POST" role="form">
   <div class="form-group">
     <label>Ваше имя</label>
-    <input name="username" type="text" class="form-control" placeholder="Ваше имя" value="<%= session[:username] %>">
+    <input name="client[name]" type="text" class="form-control" placeholder="Ваше имя" value="">
   </div>
  
   <div class="form-group">
     <label>Ваше телефон</label>
-    <input name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%= session[:phone] %>">
+    <input name="client[phone]" type="text" class="form-control" placeholder="Ваш телефон" value="">
   </div>
 
   <div class="form-group">
   	<div class="row">
    		<div class="col-md-12">
     		<label>Когда вас ждать?</label>
-    		<input name="datetime" id="datetimepicker" type="text" class="form-control" placeholder="Введите дату и время" value="<%= session[:datetime] %>">
+    		<input name="client[datestamp]" id="datetimepicker" type="text" class="form-control" placeholder="Введите дату и время" value="">
   		</div>
     </div>
   </div>
@@ -27,17 +27,13 @@
 	 <label>Выберите парикмахера:</label>
 	 <select name="barber" class="form-control">
 
-	 <%	if @barbers != nil %>
-		 <% @barbers.each do |row| %> 
-		 	<option <%= session[:barber] == "#{row['name']}" ? 'selected' : '' %>> <%= "#{row['name']}" %> </option>
-		 <% end %> 
-	 <% end %> 
+
 	 </select> 
  </div>
 
   <div class="form-group">
     <label>Выберите цвет краски для волос:</label>
-	<select id="color" name="color">
+	<select id="color" name="client[color]">
 	  <option value="#7bd148">Green</option>
 	  <option value="#5484ed">Bold blue</option>
 	  <option value="#a4bdfc">Blue</option>
