@@ -25,12 +25,16 @@
 
  <div class="form-group">
 	 <label>Выберите парикмахера:</label>
-	 <select name="barber" class="form-control">
+	 <select name="client[barber]" class="form-control">
 
+	 <%	if @blist != nil %>
+		 <% @blist.each  do |row| %> 
+		 	<option <%= @c.barber == "#{row['name']}" ? 'selected' : '' %>> <%="#{row['name']}"%> </option>
+		 <% end %> 
+	 <% end %> 
 
 	 </select> 
  </div>
-
   <div class="form-group">
     <label>Выберите цвет краски для волос:</label>
 	<select id="color" name="client[color]">

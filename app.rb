@@ -13,7 +13,7 @@ class Client < ActiveRecord::Base
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
-	
+	validates :barber, presence: true
 end
 
 class Barber < ActiveRecord::Base
@@ -31,8 +31,13 @@ get '/' do
 	erb :index
 end
 
+before '/visit' do
+  @c = Client.new
+  @blist = Barber.all  
+end
+
+
 get '/visit' do
-  @c = Client.new 
   erb :visit
 end
 
